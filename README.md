@@ -1,6 +1,6 @@
 # id57
 
-Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet.
+Deterministic, human-readable identifiers for Go using BLAKE3 and the AIS ID57 alphabet.
 
 ## Install
 
@@ -52,7 +52,7 @@ func IsSupportedLength(length int) bool
 func Validate(value string, length int) error
 func IsValid(value string, length int) bool
 
-const DefaultLength = 12 // default output length
+const DefaultLength = 12
 ```
 
 Quick start:
@@ -61,19 +61,19 @@ Quick start:
 package main
 
 import (
-        "fmt"
+	"fmt"
 
-        "github.com/nhanpnt22/id57"
+	"github.com/nhanpnt22/id57"
 )
 
 func main() {
-        id, err := id57.GenerateString("user:123", 8)
-        if err != nil {
-                panic(err)
-        }
+	id, err := id57.GenerateString("user:123", 8)
+	if err != nil {
+		panic(err)
+	}
 
-        fmt.Println(id)
-        fmt.Println(id57.IsValid(id, 8))
+	fmt.Println(id)
+	fmt.Println(id57.IsValid(id, 8))
 }
 ```
 
@@ -91,7 +91,7 @@ id57:stable:v1 + 12 -> wpUmWi5rpGTs
 id57:stable:v1 + 16 -> wpUmWi5rpGTsyPrP
 id57:stable:v1 + 32 -> wpUmWi5rpGTsyPrPErnfB9JavNGdi4ym
 id57:stable:v1 + 57 -> wpUmWi5rpGTsyPrPErnfB9JavNGdi4ymja5dD6jHTxuhAAAAAAAAAAAAA
-```# id57
+```
 
 Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet.
 
