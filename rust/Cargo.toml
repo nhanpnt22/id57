@@ -1,0 +1,14 @@
+[package]
+name = "id57"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet"
+repository = "https://github.com/nhanpnt22/id57"
+keywords = ["id57", "blake3", "identifier", "deterministic"]
+exclude = ["Cargo.lock"]
+
+[dependencies]
+blake3 = "1.8"
+num-bigint = "0.4"
+num-traits = "0.2"

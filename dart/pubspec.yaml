@@ -1,0 +1,14 @@
+name: id57
+description: Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet
+version: 0.1.0
+repository: https://github.com/nhanpnt22/id57
+homepage: https://github.com/nhanpnt22/id57
+
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+
+dependencies:
+  blake3_dart: ^1.0.0
+
+dev_dependencies:
+  test: ^1.25.0
