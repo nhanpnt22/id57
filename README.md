@@ -1,17 +1,17 @@
 # id57
 
-Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet.
+Deterministic, human-readable identifiers for Dart using BLAKE3 and the AIS ID57 alphabet.
 
 ## Install
 
 ```sh
-go get github.com/nhanpnt22/id57
+dart pub add id57
 ```
 
 ## Import
 
-```go
-import "github.com/nhanpnt22/id57"
+```dart
+import 'package:id57/id57.dart';
 ```
 
 Canonical flow:
@@ -42,38 +42,31 @@ Supported lengths:
 
 API:
 
-```go
-func Generate(input []byte, length int) (string, error)
-func MustGenerate(input []byte, length int) string
-func GenerateString(input string, length int) (string, error)
-func FromDigest(digest []byte, length int) (string, error)
-func ValidateLength(length int) error
-func IsSupportedLength(length int) bool
-func Validate(value string, length int) error
-func IsValid(value string, length int) bool
+```dart
+String generate(List<int> input, int length)
+String generateString(String input, int length)
+String fromDigest(List<int> digest, int length)
+void validateLength(int length)
+void validate(String value, int length)
+bool isValid(String value, int length)
 
-const DefaultLength = 12 // default output length
+const int defaultLength = 12
 ```
+
+Exceptions:
+
+- `UnsupportedLengthException`
+- `LengthMismatchException`
+- `InvalidCharsetException`
 
 Quick start:
 
-```go
-package main
+```dart
+void main() {
+  final id = generateString('user:123', 8);
 
-import (
-        "fmt"
-
-        "github.com/nhanpnt22/id57"
-)
-
-func main() {
-        id, err := id57.GenerateString("user:123", 8)
-        if err != nil {
-                panic(err)
-        }
-
-        fmt.Println(id)
-        fmt.Println(id57.IsValid(id, 8))
+  print(id);
+  print(isValid(id, 8));
 }
 ```
 
@@ -91,7 +84,7 @@ id57:stable:v1 + 12 -> wpUmWi5rpGTs
 id57:stable:v1 + 16 -> wpUmWi5rpGTsyPrP
 id57:stable:v1 + 32 -> wpUmWi5rpGTsyPrPErnfB9JavNGdi4ym
 id57:stable:v1 + 57 -> wpUmWi5rpGTsyPrPErnfB9JavNGdi4ymja5dD6jHTxuhAAAAAAAAAAAAA
-```# id57
+```
 
 Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet.
 
