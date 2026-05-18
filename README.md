@@ -1,17 +1,17 @@
 # id57
 
-Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet.
+Deterministic, human-readable identifiers for JavaScript using BLAKE3 and the AIS ID57 alphabet.
 
 ## Install
 
 ```sh
-go get github.com/nhanpnt22/id57
+npm install @nhanpnt22/id57
 ```
 
 ## Import
 
-```go
-import "github.com/nhanpnt22/id57"
+```js
+import { GenerateString, IsValid } from '@nhanpnt22/id57';
 ```
 
 Canonical flow:
@@ -42,39 +42,27 @@ Supported lengths:
 
 API:
 
-```go
-func Generate(input []byte, length int) (string, error)
-func MustGenerate(input []byte, length int) string
-func GenerateString(input string, length int) (string, error)
-func FromDigest(digest []byte, length int) (string, error)
-func ValidateLength(length int) error
-func IsSupportedLength(length int) bool
-func Validate(value string, length int) error
-func IsValid(value string, length int) bool
-
-const DefaultLength = 12 // default output length
+```js
+const Alphabet
+const DefaultLength = 12
+function IsSupportedLength(length)
+function ValidateLength(length)
+function FromDigest(digest, length)
+function Generate(input, length)
+function GenerateString(input, length)
+function Validate(value, length)
+function IsValid(value, length)
 ```
 
 Quick start:
 
-```go
-package main
+```js
+import { GenerateString, IsValid } from '@nhanpnt22/id57';
 
-import (
-        "fmt"
+const id = GenerateString('user:123', 8);
 
-        "github.com/nhanpnt22/id57"
-)
-
-func main() {
-        id, err := id57.GenerateString("user:123", 8)
-        if err != nil {
-                panic(err)
-        }
-
-        fmt.Println(id)
-        fmt.Println(id57.IsValid(id, 8))
-}
+console.log(id);
+console.log(IsValid(id, 8));
 ```
 
 Stable vectors:
@@ -91,7 +79,7 @@ id57:stable:v1 + 12 -> wpUmWi5rpGTs
 id57:stable:v1 + 16 -> wpUmWi5rpGTsyPrP
 id57:stable:v1 + 32 -> wpUmWi5rpGTsyPrPErnfB9JavNGdi4ym
 id57:stable:v1 + 57 -> wpUmWi5rpGTsyPrPErnfB9JavNGdi4ymja5dD6jHTxuhAAAAAAAAAAAAA
-```# id57
+```
 
 Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet.
 
