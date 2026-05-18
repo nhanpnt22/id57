@@ -1,17 +1,17 @@
 # id57
 
-Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet.
+Deterministic, human-readable identifiers for Rust using BLAKE3 and the AIS ID57 alphabet.
 
 ## Install
 
 ```sh
-go get github.com/nhanpnt22/id57
+cargo add id57
 ```
 
 ## Import
 
-```go
-import "github.com/nhanpnt22/id57"
+```rust
+use id57::{generate_string, is_valid};
 ```
 
 Canonical flow:
@@ -42,38 +42,36 @@ Supported lengths:
 
 API:
 
-```go
-func Generate(input []byte, length int) (string, error)
-func MustGenerate(input []byte, length int) string
-func GenerateString(input string, length int) (string, error)
-func FromDigest(digest []byte, length int) (string, error)
-func ValidateLength(length int) error
-func IsSupportedLength(length int) bool
-func Validate(value string, length int) error
-func IsValid(value string, length int) bool
-
-const DefaultLength = 12 // default output length
+```rust
+pub const ALPHABET: &str
+pub const DEFAULT_LENGTH: usize = 12
+pub fn is_supported_length(length: usize) -> bool
+pub fn validate_length(length: usize) -> Result<(), Error>
+pub fn from_digest(digest: &[u8], length: usize) -> Result<String, Error>
+pub fn generate(input: &[u8], length: usize) -> Result<String, Error>
+pub fn generate_string(input: &str, length: usize) -> Result<String, Error>
+pub fn validate(value: &str, length: usize) -> Result<(), Error>
+pub fn is_valid(value: &str, length: usize) -> bool
 ```
+
+Errors:
+
+- `Error`
+- `UnsupportedLengthError`
+- `InvalidCharsetError`
+- `LengthMismatchError`
 
 Quick start:
 
-```go
-package main
+```rust
+use id57::{generate_string, is_valid};
 
-import (
-        "fmt"
+fn main() -> Result<(), id57::Error> {
+    let id = generate_string("user:123", 8)?;
 
-        "github.com/nhanpnt22/id57"
-)
-
-func main() {
-        id, err := id57.GenerateString("user:123", 8)
-        if err != nil {
-                panic(err)
-        }
-
-        fmt.Println(id)
-        fmt.Println(id57.IsValid(id, 8))
+    println!("{id}");
+    println!("{}", is_valid(&id, 8));
+    Ok(())
 }
 ```
 
@@ -91,7 +89,7 @@ id57:stable:v1 + 12 -> wpUmWi5rpGTs
 id57:stable:v1 + 16 -> wpUmWi5rpGTsyPrP
 id57:stable:v1 + 32 -> wpUmWi5rpGTsyPrPErnfB9JavNGdi4ym
 id57:stable:v1 + 57 -> wpUmWi5rpGTsyPrPErnfB9JavNGdi4ymja5dD6jHTxuhAAAAAAAAAAAAA
-```# id57
+```
 
 Deterministic, human-readable identifiers using BLAKE3 and the AIS ID57 alphabet.
 
